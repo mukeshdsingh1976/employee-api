@@ -5,6 +5,6 @@ namespace EmployeeManagementAPI.Models
         public int Id { get; set; }
         public string? Name { get; set; } // Nullable
         public string? Position { get; set; } // Nullable
-        public decimal Salary { get; set; }
+        public decimal Salary { get; set; } = 0;
     }
 }
