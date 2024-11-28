@@ -1,10 +1,9 @@
 {
   "version": 2,
-  "dgSpecHash": "BAtvV2PoV4s=",
+  "dgSpecHash": "lJeTERJKaaw=",
   "success": true,
   "projectFilePath": "E:\\Mukesh\\RND\\EmployeeManagement\\employee-api\\EmployeeManagementAPI.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\shivm\\.nuget\\packages\\microsoft.aspnetcore.openapi\\8.0.1\\microsoft.aspnetcore.openapi.8.0.1.nupkg.sha512",
     "C:\\Users\\shivm\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
     "C:\\Users\\shivm\\.nuget\\packages\\microsoft.openapi\\1.6.22\\microsoft.openapi.1.6.22.nupkg.sha512",
     "C:\\Users\\shivm\\.nuget\\packages\\swashbuckle.aspnetcore\\7.0.0\\swashbuckle.aspnetcore.7.0.0.nupkg.sha512",
