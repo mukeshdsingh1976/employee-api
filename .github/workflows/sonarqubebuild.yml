@@ -39,7 +39,6 @@ jobs:
       - name: Build and analyze
         shell: pwsh
         run: |
-          New-Item -Path .\.sonar\scanner -ItemType Directory
           dotnet-sonarscanner begin /k:"mukeshdsingh1976" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="${{ secrets.SONAR_HOST_URL }}"
           dotnet build
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
