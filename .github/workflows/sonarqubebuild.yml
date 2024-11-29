@@ -37,8 +37,9 @@ jobs:
           New-Item -Path .\.sonar\scanner -ItemType Directory
           dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner
       - name: Build and analyze
-        shell: pwsh
+        shell: pwsh         
         run: |
+          path: .\.sonar\scanner
           chmod -R 777 .
           dotnet-sonarscanner begin /k:"mukeshdsingh1976" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="${{ secrets.SONAR_HOST_URL }}"
           dotnet build
