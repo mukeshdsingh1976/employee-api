@@ -33,16 +33,12 @@ jobs:
           key: ${{ runner.os }}-sonar-scanner
           restore-keys: ${{ runner.os }}-sonar-scanner
 
-      - name: Install SonarQube scanner
-        if: steps.cache-sonar-scanner.outputs.cache-hit != 'true'
-        shell: pwsh
+      - name: Install SonarQube scanner globally
         run: |
-          New-Item -Path ~\.sonar\scanner -ItemType Directory
-          dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner
+          dotnet tool install --global dotnet-sonarscanner        
 
-      - name: Verify SonarScanner installation
-        run: |
-          .\.sonar\scanner\dotnet-sonarscanner --version
+      - name: List Scanner Directory
+        run: ls -la .sonar/scanner
 
       - name: SonarQube Scan
         uses: SonarSource/sonarcloud-github-action@v1
