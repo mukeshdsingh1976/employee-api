@@ -1,4 +1,4 @@
-name: Build
+name: Sonar Scan
 on:
   push:
     branches:
@@ -39,6 +39,8 @@ jobs:
       - name: Build and analyze
         shell: pwsh
         run: |
+          echo "Folder PATH" >> .\.sonar\scanner
+          echo "Folder PATH" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
           dotnet-sonarscanner begin /k:"mukeshdsingh1976" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="${{ secrets.SONAR_HOST_URL }}"
           dotnet build
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
