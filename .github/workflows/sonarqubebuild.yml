@@ -17,12 +17,14 @@ jobs:
       - uses: actions/setup-dotnet@v4
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+
       - name: Cache SonarQube packages
         uses: actions/cache@v1
         with:
           path: ~\.sonar\cache
           key: ${{ runner.os }}-sonar
           restore-keys: ${{ runner.os }}-sonar
+
       - name: Cache SonarQube scanner
         id: cache-sonar-scanner
         uses: actions/cache@v1
@@ -30,16 +32,29 @@ jobs:
           path: ~\.sonar\scanner
           key: ${{ runner.os }}-sonar-scanner
           restore-keys: ${{ runner.os }}-sonar-scanner
+
       - name: Install SonarQube scanner
         if: steps.cache-sonar-scanner.outputs.cache-hit != 'true'
         shell: pwsh
         run: |
           New-Item -Path ~\.sonar\scanner -ItemType Directory
           dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner
+
+      - name: Verify SonarScanner installation
+        run: |
+          .\.sonar\scanner\dotnet-sonarscanner --version
+
+      - name: SonarQube Scan
+        uses: SonarSource/sonarcloud-github-action@v1
+        with:
+          projectKey: "mukeshdsingh1976"
+          organization: "mukeshdsingh1976"
+          token: "${{ secrets.SONAR_TOKEN }}"    
+        
       - name: Build and analyze
         shell: pwsh         
         run: |
           chmod -R 777 .
-          dotnet-sonarscanner begin /k:"mukeshdsingh1976" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="${{ secrets.SONAR_HOST_URL }}"
+          .\.sonar\scanner\dotnet-sonarscanner begin /k:"mukeshdsingh1976" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="${{ secrets.SONAR_HOST_URL }}"
           dotnet build
-          ~\.sonar\scanner\dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
+          .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
