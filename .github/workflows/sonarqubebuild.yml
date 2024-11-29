@@ -36,14 +36,7 @@ jobs:
       - name: Install SonarQube scanner globally
         run: |
           dotnet tool install --global dotnet-sonarscanner        
-
-      - name: SonarQube Scan
-        uses: SonarSource/sonarcloud-github-action@v1
-        with:
-          projectKey: "mukeshdsingh1976"
-          organization: "mukeshdsingh1976"
-          token: "${{ secrets.SONAR_TOKEN }}"    
-        
+       
       - name: Build and analyze
         shell: pwsh         
         run: |
