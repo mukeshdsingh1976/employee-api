@@ -37,9 +37,6 @@ jobs:
         run: |
           dotnet tool install --global dotnet-sonarscanner        
 
-      - name: List Scanner Directory
-        run: ls -la .sonar/scanner
-
       - name: SonarQube Scan
         uses: SonarSource/sonarcloud-github-action@v1
         with:
@@ -51,6 +48,6 @@ jobs:
         shell: pwsh         
         run: |
           chmod -R 777 .
-          .\.sonar\scanner\dotnet-sonarscanner begin /k:"mukeshdsingh1976" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="${{ secrets.SONAR_HOST_URL }}"
+          dotnet-sonarscanner begin /k:"mukeshdsingh1976" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="${{ secrets.SONAR_HOST_URL }}"
           dotnet build
-          .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
+          dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
