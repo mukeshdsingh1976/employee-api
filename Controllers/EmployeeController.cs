@@ -53,5 +53,13 @@ namespace EmployeeManagementAPI.Controllers
             _service.Delete(id);
             return NoContent();
         }
+
+        [HttpGet("Name/{name}")]
+        public IActionResult GetByName(string name)
+        {
+            var employee = _service.GetByName(name);
+            if (employee == null) return NotFound();
+            return Ok(employee);
+        }
     }
 }

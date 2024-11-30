@@ -22,6 +22,8 @@ namespace EmployeeManagementAPI.Services
 
         public Employee GetById(int id) => _employees.FirstOrDefault(e => e.Id == id);
 
+        public Employee GetByName(string name) => _employees.FirstOrDefault(e => e.Name.Contains(name));
+
         public void Add(Employee employee)
         {
             employee.Id = _employees.Max(e => e.Id) + 1;

@@ -14,7 +14,6 @@ E:\Mukesh\RND\EmployeeManagement\employee-api\bin\Debug\net8.0\EmployeeManagemen
 E:\Mukesh\RND\EmployeeManagement\employee-api\bin\Debug\net8.0\EmployeeManagementAPI.runtimeconfig.json
 E:\Mukesh\RND\EmployeeManagement\employee-api\bin\Debug\net8.0\EmployeeManagementAPI.dll
 E:\Mukesh\RND\EmployeeManagement\employee-api\bin\Debug\net8.0\EmployeeManagementAPI.pdb
-E:\Mukesh\RND\EmployeeManagement\employee-api\bin\Debug\net8.0\Microsoft.AspNetCore.OpenApi.dll
 E:\Mukesh\RND\EmployeeManagement\employee-api\bin\Debug\net8.0\Microsoft.OpenApi.dll
 E:\Mukesh\RND\EmployeeManagement\employee-api\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
 E:\Mukesh\RND\EmployeeManagement\employee-api\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
