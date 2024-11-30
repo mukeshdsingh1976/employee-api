@@ -55,6 +55,8 @@ namespace EmployeeManagementAPI.Controllers
         }
 
         [HttpGet("Name/{name}")]
+        [ProducesResponseType(type: typeof(Employee), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public IActionResult GetByName(string name)
         {
             var employee = _service.GetByName(name);
