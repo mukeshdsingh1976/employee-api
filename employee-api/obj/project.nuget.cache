@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "u3AKbAy/u3Y=",
+  "dgSpecHash": "ZxjSuB1R9Bg=",
   "success": true,
   "projectFilePath": "E:\\Mukesh\\RND\\EmployeeManagement\\employee-api\\employee-api\\EmployeeManagementAPI.csproj",
   "expectedPackageFiles": [
@@ -9,7 +9,11 @@
     "C:\\Users\\shivm\\.nuget\\packages\\swashbuckle.aspnetcore\\7.0.0\\swashbuckle.aspnetcore.7.0.0.nupkg.sha512",
     "C:\\Users\\shivm\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\7.0.0\\swashbuckle.aspnetcore.swagger.7.0.0.nupkg.sha512",
     "C:\\Users\\shivm\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\7.0.0\\swashbuckle.aspnetcore.swaggergen.7.0.0.nupkg.sha512",
-    "C:\\Users\\shivm\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\7.0.0\\swashbuckle.aspnetcore.swaggerui.7.0.0.nupkg.sha512"
+    "C:\\Users\\shivm\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\7.0.0\\swashbuckle.aspnetcore.swaggerui.7.0.0.nupkg.sha512",
+    "C:\\Users\\shivm\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.5\\microsoft.netcore.app.ref.8.0.5.nupkg.sha512",
+    "C:\\Users\\shivm\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.5\\microsoft.windowsdesktop.app.ref.8.0.5.nupkg.sha512",
+    "C:\\Users\\shivm\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.5\\microsoft.aspnetcore.app.ref.8.0.5.nupkg.sha512",
+    "C:\\Users\\shivm\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\8.0.5\\microsoft.netcore.app.host.win-x64.8.0.5.nupkg.sha512"
   ],
   "logs": []
 }
