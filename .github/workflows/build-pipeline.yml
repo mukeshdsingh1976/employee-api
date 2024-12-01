@@ -43,8 +43,8 @@ jobs:
     # - name: Publish
     #   run: dotnet publish './${{ env.PROJECT_LOCATION }}/EmployeeManagementAPI.sln' -c Release --no-build --output './${{ env.PROJECT_LOCATION }}/publish'
 
-    - name: zip publish
-      run: Compress-Archive -Path ${{ env.PROJECT_LOCATION }}/publish -DestinationPath ${{ env.PROJECT_LOCATION }}/publish/publish.zip
+    # - name: zip publish
+    #   run: Compress-Archive -Path ${{ env.PROJECT_LOCATION }}/publish -DestinationPath ${{ env.PROJECT_LOCATION }}/publish/publish.zip
 
     - name: Upload artifact for deployment job
       uses: actions/upload-artifact@v4
