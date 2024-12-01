@@ -61,7 +61,7 @@ jobs:
 
     - name: Upload to S3
       run: | 
-        aws s3 cp ./${{ env.PROJECT_LOCATION }}/publish s3://{bucket-name}/{folder-name}/ --recursive
+        aws s3 cp ${{ env.PROJECT_LOCATION }}/publish s3://${{ env.bucket-name }}/${{ env.folder-name }}/ --recursive
 
     # - name: Deploy to EC2 instance
     #   run: |
