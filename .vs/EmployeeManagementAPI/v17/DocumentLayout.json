@@ -3,8 +3,16 @@
   "WorkspaceRootPath": "E:\\Mukesh\\RND\\EmployeeManagement\\employee-api\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{DB56565D-6B07-44CE-94E2-863F6EAEE419}|employee-api\\EmployeeManagementAPI.csproj|e:\\mukesh\\rnd\\employeemanagement\\employee-api\\employee-api\\employeemanagementapi.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{DB56565D-6B07-44CE-94E2-863F6EAEE419}|employee-api\\EmployeeManagementAPI.csproj|solutionrelative:employee-api\\employeemanagementapi.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+      "AbsoluteMoniker": "D:0:0:{DB56565D-6B07-44CE-94E2-863F6EAEE419}|employee-api\\EmployeeManagementAPI.csproj|e:\\mukesh\\rnd\\employeemanagement\\employee-api\\employee-api\\services\\employeeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DB56565D-6B07-44CE-94E2-863F6EAEE419}|employee-api\\EmployeeManagementAPI.csproj|solutionrelative:employee-api\\services\\employeeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DB56565D-6B07-44CE-94E2-863F6EAEE419}|employee-api\\EmployeeManagementAPI.csproj|e:\\mukesh\\rnd\\employeemanagement\\employee-api\\employee-api\\controllers\\employeecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DB56565D-6B07-44CE-94E2-863F6EAEE419}|employee-api\\EmployeeManagementAPI.csproj|solutionrelative:employee-api\\controllers\\employeecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DB56565D-6B07-44CE-94E2-863F6EAEE419}|employee-api\\EmployeeManagementAPI.csproj|e:\\mukesh\\rnd\\employeemanagement\\employee-api\\employee-api\\models\\employee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DB56565D-6B07-44CE-94E2-863F6EAEE419}|employee-api\\EmployeeManagementAPI.csproj|solutionrelative:employee-api\\models\\employee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -43,14 +51,40 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "EmployeeManagementAPI",
-              "DocumentMoniker": "E:\\Mukesh\\RND\\EmployeeManagement\\employee-api\\employee-api\\EmployeeManagementAPI.csproj",
-              "RelativeDocumentMoniker": "employee-api\\EmployeeManagementAPI.csproj",
-              "ToolTip": "E:\\Mukesh\\RND\\EmployeeManagement\\employee-api\\employee-api\\EmployeeManagementAPI.csproj",
-              "RelativeToolTip": "employee-api\\EmployeeManagementAPI.csproj",
+              "Title": "EmployeeService.cs",
+              "DocumentMoniker": "E:\\Mukesh\\RND\\EmployeeManagement\\employee-api\\employee-api\\Services\\EmployeeService.cs",
+              "RelativeDocumentMoniker": "employee-api\\Services\\EmployeeService.cs",
+              "ToolTip": "E:\\Mukesh\\RND\\EmployeeManagement\\employee-api\\employee-api\\Services\\EmployeeService.cs",
+              "RelativeToolTip": "employee-api\\Services\\EmployeeService.cs",
+              "ViewState": "AQIAAAUAAAAAAAAAAAAuwCUAAAAuAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-01T17:09:35.993Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Employee.cs",
+              "DocumentMoniker": "E:\\Mukesh\\RND\\EmployeeManagement\\employee-api\\employee-api\\Models\\Employee.cs",
+              "RelativeDocumentMoniker": "employee-api\\Models\\Employee.cs",
+              "ToolTip": "E:\\Mukesh\\RND\\EmployeeManagement\\employee-api\\employee-api\\Models\\Employee.cs",
+              "RelativeToolTip": "employee-api\\Models\\Employee.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-11-30T07:27:24.083Z",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-01T17:01:17.698Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "EmployeeController.cs",
+              "DocumentMoniker": "E:\\Mukesh\\RND\\EmployeeManagement\\employee-api\\employee-api\\Controllers\\EmployeeController.cs",
+              "RelativeDocumentMoniker": "employee-api\\Controllers\\EmployeeController.cs",
+              "ToolTip": "E:\\Mukesh\\RND\\EmployeeManagement\\employee-api\\employee-api\\Controllers\\EmployeeController.cs",
+              "RelativeToolTip": "employee-api\\Controllers\\EmployeeController.cs",
+              "ViewState": "AQIAACMAAAAAAAAAAAAQwEAAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-01T17:00:39.14Z",
               "EditorCaption": ""
             }
           ]
