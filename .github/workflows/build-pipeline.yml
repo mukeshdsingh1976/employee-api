@@ -21,7 +21,10 @@ jobs:
       run: dotnet restore
 
     - name: Build
-      run: dotnet build --no-restore
+      run: 
+        dotnet build --no-restore
+        | 
+        dotnet publish -c Release -o ../dotnet-webapp -r linux-x64 --self-contained true /p:UseAppHost=true
       
     - name: Test
       run: dotnet test --no-build --verbosity normal
