@@ -12,6 +12,7 @@ env:
   application-name: "Wizer-API"
   deployment-group-name: "wizer-api"
   PROJECT_LOCATION: "/home/runner/work/employee-api/employee-api/employee-api"
+  WEBJOB_OUTPUT: 'employee-bulk-upload'
 
 jobs:
   build:
@@ -41,14 +42,22 @@ jobs:
       id: date
       run: echo "::set-output name=date::$(date +'%Y%m%d%H%M%S')"
 
+    # - name: Upload artifact for deployment job
+    #   uses: actions/upload-artifact@v4
+    #   with:
+    #     name: webjob-zip-deploy
+    #     path: ${{ env.PROJECT_LOCATION }}/publish
+
+    - name: Zip the WebJob
+      run: |
+        cd '${{ env.PROJECT_LOCATION }}/publish'
+        zip -r '../${{ env.WEBJOB_OUTPUT }}.zip' .
+
     - name: Upload artifact for deployment job
       uses: actions/upload-artifact@v4
       with:
         name: webjob-zip-deploy
-        path: ${{ env.PROJECT_LOCATION }}/publish
-
-    # - name: zip publish
-    #   run: Compress-Archive -Path ${{ env.PROJECT_LOCATION }}/publish -DestinationPath ${{ env.PROJECT_LOCATION }}/publish/publish.zip
+        path: '${{ env.PROJECT_LOCATION }}/${{ env.WEBJOB_OUTPUT }}.zip'
 
     - name: Configure AWS credentials from Test account
       uses: aws-actions/configure-aws-credentials@v1
