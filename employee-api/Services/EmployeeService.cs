@@ -41,6 +41,17 @@ namespace EmployeeManagementAPI.Services
             }
         }
 
-        public void Delete(int id) => _employees.RemoveAll(e => e.Id == id);
+		public void Update(Employee employee)
+		{
+			var existing = GetById(employee.Id);
+			if (existing != null)
+			{
+				existing.Name = employee.Name;
+				existing.Position = employee.Position;
+				existing.Salary = employee.Salary;
+			}
+		}
+
+		public void Delete(int id) => _employees.RemoveAll(e => e.Id == id);
     }
 }
