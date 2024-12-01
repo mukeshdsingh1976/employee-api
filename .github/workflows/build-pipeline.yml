@@ -11,7 +11,7 @@ env:
   folder-name: "Wizer-API-App"
   application-name: "Wizer-API"
   deployment-group-name: "wizer-api"
-  PROJECT_LOCATION: "employee-api"
+  PROJECT_LOCATION: "/home/runner/work/employee-api/employee-api/employee-api/"
 
 jobs:
   build:
@@ -31,7 +31,7 @@ jobs:
       run: 
         dotnet build --no-restore
         | 
-        dotnet publish -c Release --property:PublishDir=dotnet-webapp -r linux-x64 --self-contained true /p:UseAppHost=true
+        dotnet publish -c Release --property:PublishDir=publish -r linux-x64 --self-contained true /p:UseAppHost=true
       
     - name: Test
       run: dotnet test --no-build --verbosity normal
@@ -40,8 +40,8 @@ jobs:
       id: date
       run: echo "::set-output name=date::$(date +'%Y%m%d%H%M%S')"
 
-    - name: Publish
-      run: dotnet publish './${{ env.PROJECT_LOCATION }}/EmployeeManagementAPI.sln' -c Release --no-build --output './${{ env.PROJECT_LOCATION }}/publish'
+    # - name: Publish
+    #   run: dotnet publish './${{ env.PROJECT_LOCATION }}/EmployeeManagementAPI.sln' -c Release --no-build --output './${{ env.PROJECT_LOCATION }}/publish'
 
     # - name: zip publish
     #   run: Compress-Archive -Path ./publish -DestinationPath ./publish/publish.zip
@@ -50,7 +50,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: webjob-zip-deploy
-        path: ./${{ env.PROJECT_LOCATION }}/publish
+        path: ${{ env.PROJECT_LOCATION }}/publish
 
     - name: Configure AWS credentials from Test account
       uses: aws-actions/configure-aws-credentials@v1
