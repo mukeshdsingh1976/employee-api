@@ -11,7 +11,7 @@ env:
   folder-name: "Wizer-API-App"
   application-name: "Wizer-API"
   deployment-group-name: "wizer-api"
-  PROJECT_LOCATION: "/home/runner/work/employee-api/employee-api/employee-api/"
+  PROJECT_LOCATION: "/home/runner/work/employee-api/employee-api/employee-api"
 
 jobs:
   build:
@@ -43,14 +43,14 @@ jobs:
     # - name: Publish
     #   run: dotnet publish './${{ env.PROJECT_LOCATION }}/EmployeeManagementAPI.sln' -c Release --no-build --output './${{ env.PROJECT_LOCATION }}/publish'
 
-    # - name: zip publish
-    #   run: Compress-Archive -Path ./publish -DestinationPath ./publish/publish.zip
+    - name: zip publish
+      run: Compress-Archive -Path ${{ env.PROJECT_LOCATION }}/publish -DestinationPath ${{ env.PROJECT_LOCATION }}/publish/publish.zip
 
     - name: Upload artifact for deployment job
       uses: actions/upload-artifact@v4
       with:
         name: webjob-zip-deploy
-        path: ${{ env.PROJECT_LOCATION }}/publish
+        path: ${{ env.PROJECT_LOCATION }}/publish/publish.zip
 
     - name: Configure AWS credentials from Test account
       uses: aws-actions/configure-aws-credentials@v1
@@ -61,7 +61,7 @@ jobs:
 
     - name: Upload to S3
       run: | 
-        aws s3 cp ${{ env.PROJECT_LOCATION }}/publish s3://${{ env.bucket-name }}/${{ env.folder-name }}/ --recursive
+        aws s3 cp ${{ env.PROJECT_LOCATION }}/publish/publish.zip s3://${{ env.bucket-name }}/${{ env.folder-name }}/ --recursive
 
     # - name: Deploy to EC2 instance
     #   run: |
