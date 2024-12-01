@@ -11,7 +11,7 @@ env:
   folder-name: "Wizer-API-App"
   application-name: "Wizer-API"
   deployment-group-name: "wizer-api"
-  PROJECT_LOCATION: "/home/runner/work/employee-api/employee-api/employee-api/"
+  PROJECT_LOCATION: "/home/runner/work/employee-api/employee-api/employee-api"
 
 jobs:
   build:
@@ -50,7 +50,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: webjob-zip-deploy
-        path: ${{ env.PROJECT_LOCATION }}/publish
+        path: ${{ env.PROJECT_LOCATION }}/publish/publish.zip
 
     - name: Configure AWS credentials from Test account
       uses: aws-actions/configure-aws-credentials@v1
