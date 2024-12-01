@@ -42,8 +42,14 @@ jobs:
     - name: Publish
       run: dotnet publish -c Release --property:PublishDir=publish
 
-    - name: zip publish
-      run: Compress-Archive -Path ./publish -DestinationPath ./publish/publish.zip
+    # - name: zip publish
+    #   run: Compress-Archive -Path ./publish -DestinationPath ./publish/publish.zip
+
+    - name: Upload artifact for deployment job
+      uses: actions/upload-artifact@v4
+      with:
+        name: webjob-zip-deploy
+        path: ./publish
 
     - name: Configure AWS credentials from Test account
       uses: aws-actions/configure-aws-credentials@v1
