@@ -52,6 +52,9 @@ jobs:
         name: webjob-zip-deploy
         path: ${{ env.PROJECT_LOCATION }}/publish
 
+    - name: zip publish
+      run: Compress-Archive -Path ${{ env.PROJECT_LOCATION }}/publish -DestinationPath ${{ env.PROJECT_LOCATION }}/publish/publish.zip
+
     - name: Configure AWS credentials from Test account
       uses: aws-actions/configure-aws-credentials@v1
       with:
