@@ -15,6 +15,7 @@ env:
 
 jobs:
   build:
+    name: Debug Build & Test
     runs-on: ubuntu-latest
 
     steps:
@@ -40,17 +41,14 @@ jobs:
       id: date
       run: echo "::set-output name=date::$(date +'%Y%m%d%H%M%S')"
 
-    # - name: Publish
-    #   run: dotnet publish './${{ env.PROJECT_LOCATION }}/EmployeeManagementAPI.sln' -c Release --no-build --output './${{ env.PROJECT_LOCATION }}/publish'
-
-    # - name: zip publish
-    #   run: Compress-Archive -Path ${{ env.PROJECT_LOCATION }}/publish -DestinationPath ${{ env.PROJECT_LOCATION }}/publish/publish.zip
-
     - name: Upload artifact for deployment job
       uses: actions/upload-artifact@v4
       with:
         name: webjob-zip-deploy
         path: ${{ env.PROJECT_LOCATION }}/publish
+
+    # - name: zip publish
+    #   run: Compress-Archive -Path ${{ env.PROJECT_LOCATION }}/publish -DestinationPath ${{ env.PROJECT_LOCATION }}/publish/publish.zip
 
     - name: Configure AWS credentials from Test account
       uses: aws-actions/configure-aws-credentials@v1
@@ -78,3 +76,26 @@ jobs:
     #     draft: false
     #     prerelease: false
 
+  release:
+    name: Create Github Release
+    if: contains(github.ref, 'tags/v') # works only version tagged
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1.0.0
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ github.ref }}
+        draft: false
+        prerelease: false
+    - name: Output Release URL File
+      run: echo ${{ steps.create_release.outputs.upload_url }} > release_url.txt
+    - name: Save Release URL File for publish
+      uses: actions/upload-artifact@v1
+      with:
+        name: release_url
+        path: release_url.txt
