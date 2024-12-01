@@ -12,6 +12,7 @@ env:
   application-name: "Wizer-API"
   deployment-group-name: "wizer-api"
   PROJECT_LOCATION: "/home/runner/work/employee-api/employee-api/employee-api"
+  WEBJOB_OUTPUT: 'employee-bulk-upload'
 
 jobs:
   build:
@@ -60,6 +61,17 @@ jobs:
     - name: Upload to S3
       run: | 
         aws s3 cp ${{ env.PROJECT_LOCATION }}/publish s3://${{ env.bucket-name }}/${{ env.folder-name }}/ --recursive
+
+    - name: Zip the WebJob
+      run: |
+        cd '${{ env.PROJECT_LOCATION }}/publish'
+        zip -r '../${{ env.WEBJOB_OUTPUT }}.zip' .
+
+    - name: Upload artifact for deployment job
+      uses: actions/upload-artifact@v4
+      with:
+        name: webjob-zip-deploy
+        path: '${{ env.PROJECT_LOCATION }}/${{ env.WEBJOB_OUTPUT }}.zip'
 
     # - name: Deploy to EC2 instance
     #   run: |
