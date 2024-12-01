@@ -6,6 +6,12 @@ on:
   pull_request:
     branches: [ "main" ]
 
+env:
+  bucket-name: "wizers3bucket"
+  folder-name: "Wizer-API-App"
+  application-name: "Wizer-API"
+  deployment-group-name: "wizer-api"
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -33,14 +39,37 @@ jobs:
       id: date
       run: echo "::set-output name=date::$(date +'%Y%m%d%H%M%S')"
 
-    - name: Create Release
-      id: create_release
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Publish
+      run: dotnet publish -c Release -o ./publish
+
+    - name: zip publish
+      run: Compress-Archive -Path ./publish -DestinationPath ./publish/publish.zip
+
+    - name: Configure AWS credentials from Test account
+      uses: aws-actions/configure-aws-credentials@v1
       with:
-        tag_name: release-${{ steps.date.outputs.date }}
-        release_name: Release ${{ steps.date.outputs.date }}
-        draft: false
-        prerelease: false
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ secrets.AWS_REGION }}
+
+    - name: Upload to S3
+      run: | 
+        aws s3 cp ./publish s3://{bucket-name}/{folder-name}/ --recursive
+
+    - name: Deploy to EC2 instance
+      run: |
+        aws deploy create-deployment --application-name {application-name} --deployment-config-name CodeDeployDefault.AllAtOnce --deployment-group-name {deployment-group-name} --s3-location bucket={bucket-name},key={folder-name}/publish.zip,bundleType=zip
+
+
+
+    # - name: Create Release
+    #   id: create_release
+    #   uses: actions/create-release@v1
+    #   env:
+    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    #   with:
+    #     tag_name: release-${{ steps.date.outputs.date }}
+    #     release_name: Release ${{ steps.date.outputs.date }}
+    #     draft: false
+    #     prerelease: false
 
