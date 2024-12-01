@@ -11,6 +11,7 @@ env:
   folder-name: "Wizer-API-App"
   application-name: "Wizer-API"
   deployment-group-name: "wizer-api"
+  PROJECT_LOCATION: "employee-api"
 
 jobs:
   build:
