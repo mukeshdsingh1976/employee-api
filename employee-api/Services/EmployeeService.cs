@@ -43,30 +43,5 @@ namespace EmployeeManagementAPI.Services
 
 		public void Delete(int id) => _employees.RemoveAll(e => e.Id == id);
 
-
-		public List<Employee> GetAll() => _employees;
-
-		public Employee GetById(int id) => _employees.FirstOrDefault(e => e.Id == id);
-
-		public Employee GetByName(string name) => _employees.FirstOrDefault(e => e.Name.Contains(name));
-
-		public void Add(Employee employee)
-		{
-			employee.Id = _employees.Max(e => e.Id) + 1;
-			_employees.Add(employee);
-		}
-
-		public void Update(Employee employee)
-		{
-			var existing = GetById(employee.Id);
-			if (existing != null)
-			{
-				existing.Name = employee.Name;
-				existing.Position = employee.Position;
-				existing.Salary = employee.Salary;
-			}
-		}
-
-		public void Delete(int id) => _employees.RemoveAll(e => e.Id == id);
-	}
+    }
 }
