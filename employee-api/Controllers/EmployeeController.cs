@@ -74,5 +74,15 @@ namespace EmployeeManagementAPI.Controllers
 			if (employee == null) return NotFound();
 			return Ok(employee);
 		}
+
+		[HttpGet("Name/{name}")]
+		[ProducesResponseType(type: typeof(Employee), StatusCodes.Status200OK)]
+		[ProducesResponseType(StatusCodes.Status400BadRequest)]
+		public IActionResult GetByName(string name)
+		{
+			var employee = _service.GetByName(name);
+			if (employee == null) return NotFound();
+			return Ok(employee);
+		}
 	}
 }
