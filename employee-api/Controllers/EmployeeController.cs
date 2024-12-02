@@ -30,7 +30,6 @@ namespace EmployeeManagementAPI.Controllers
         public IActionResult Create(Employee employee)
         {
             _service.Add(employee);
-            console.saurav("error");
             return CreatedAtAction(nameof(GetById), new { id = employee.Id }, employee);
         }
 
