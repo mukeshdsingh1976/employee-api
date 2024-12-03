@@ -16,7 +16,7 @@ env:
 
 jobs:
   build:
-    name: Debug Build & Test
+    name: Build & Test
     runs-on: ubuntu-latest
 
     steps:
@@ -42,12 +42,6 @@ jobs:
       id: date
       run: echo "::set-output name=date::$(date +'%Y%m%d%H%M%S')"
 
-    # - name: Upload artifact for deployment job
-    #   uses: actions/upload-artifact@v4
-    #   with:
-    #     name: webjob-zip-deploy
-    #     path: ${{ env.PROJECT_LOCATION }}/publish
-
     - name: Zip the WebJob
       run: |
         cd '${{ env.PROJECT_LOCATION }}/publish'
@@ -70,24 +64,33 @@ jobs:
       run: | 
         aws s3 cp ${{ env.PROJECT_LOCATION }}/${{ env.WEBJOB_OUTPUT }}.zip s3://${{ env.bucket-name }}/${{ env.folder-name }}/ 
 
-    # - name: Upload to S3
-    #   run: | 
-    #     aws s3 cp ${{ env.PROJECT_LOCATION }}/publish s3://${{ env.bucket-name }}/${{ env.folder-name }}/ --recursive
+  deploy:
+    runs-on: ubuntu-latest
 
-    # - name: Deploy to EC2 instance
-    #   run: |
-    #     aws deploy create-deployment --application-name {application-name} --deployment-config-name CodeDeployDefault.AllAtOnce --deployment-group-name {deployment-group-name} --s3-location bucket={bucket-name},key={folder-name}/publish.zip,bundleType=zip
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    # - name: Create Release
-    #   id: create_release
-    #   uses: actions/create-release@v1
-    #   env:
-    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    #   with:
-    #     tag_name: release-${{ steps.date.outputs.date }}
-    #     release_name: Release ${{ steps.date.outputs.date }}
-    #     draft: false
-    #     prerelease: false
+      - name: Set up .NET Core
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.0'
+
+      - name: Build the application
+        run: dotnet publish -c Release -o ./publish  -r linux-x64 --self-contained true /p:UseAppHost=true
+
+      - name: Deploy to EC2
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            sudo rm -rf /var/www/myapp
+            sudo mkdir -p /var/www/myapp
+            sudo chown -R ubuntu:ubuntu /var/www/myapp
+            scp -r ./publish/* ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/var/www/myapp
+            sudo systemctl restart myapp.service
 
   release:
     name: Create Github Release
