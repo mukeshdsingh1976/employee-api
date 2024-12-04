@@ -16,7 +16,7 @@ env:
 
 jobs:
   build:
-    name: Build & Test
+    name: Build
     runs-on: ubuntu-latest
 
     steps:
@@ -65,6 +65,8 @@ jobs:
         aws s3 cp ${{ env.PROJECT_LOCATION }}/${{ env.WEBJOB_OUTPUT }}.zip s3://${{ env.bucket-name }}/${{ env.folder-name }}/ 
 
   deploy:
+    name: Release
+    needs: [build]
     runs-on: ubuntu-latest
 
     steps:
@@ -86,11 +88,11 @@ jobs:
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            sudo rm -rf /var/www/myapp
-            sudo mkdir -p /var/www/myapp
-            sudo chown -R ubuntu:ubuntu /var/www/myapp
-            scp -r ./publish/* ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/var/www/myapp
-            sudo systemctl restart myapp.service
+            sudo rm -rf /var/www/employeeapp
+            sudo mkdir -p /var/www/employeeapp
+            sudo chown -R ubuntu:ubuntu /var/www/employeeapp
+            scp -r ./publish/* ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/var/www/employeeapp
+            sudo systemctl restart employeeapp.service
 
   release:
     name: Create Github Release
